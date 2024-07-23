@@ -5,6 +5,7 @@ import pandas as pd
 import numpy as np
 from dotenv import load_dotenv
 import os
+from flask_cors import CORS
 
 load_dotenv()
 
@@ -21,6 +22,9 @@ conexion = mysql.connector.connect(
 )
 
 app = Flask(__name__,static_folder='build')
+
+CORS(app)
+
 
 
 @app.after_request
