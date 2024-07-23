@@ -20,7 +20,13 @@ conexion = mysql.connector.connect(
     collation=os.getenv('DB_COLLATION')
 )
 
-app = Flask(__name__)
+app = Flask(__name__,static_folder='build')
+
+
+@app.after_request
+def after_request(response):
+    response.headers['Server'] = 'My Custom Server'
+    return response
 
 @app.route("/")
 def root():
